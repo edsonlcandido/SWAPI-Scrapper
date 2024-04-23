@@ -1,6 +1,7 @@
-﻿CREATE TABLE IF NOT EXISTS Film (
+﻿CREATE TABLE Film (
+    episode_id    INTEGER PRIMARY KEY
+                          UNIQUE,
     title         TEXT,
-    episode_id    INTEGER,
     opening_crawl TEXT,
     director      TEXT,
     producer      TEXT,
