@@ -8,22 +8,22 @@ Aplicação de console criada para gerar um banco de dados SQLite com a API de S
 - Dapper
 
 ## Próximos passos
-- Filmes
-  -- [x] Scrapper e popular a tabela de filmes
-  -- [ ] Scrapper e popular realacionemaneto Filme/Naves
+- Filmes  
+     - [x] Scrapper e popular a tabela de filmes  
+     - [ ] Scrapper e popular realacionemaneto Filme/Naves 
 
 - Personagens
-  -- [x] Scrapper e popular a tabela de personagens
-  -- [x] Scrapper e popular realacionemaneto Personagem/Filmes
+    - [x] Scrapper e popular a tabela de personagens  
+    - [x] Scrapper e popular realacionemaneto Personagem/Filmes
 
 - Planetas
-  -- [ ] Scrapper e popular a tabela de planetas
-  -- [ ] Scrapper e popular realacionemaneto Planeta/Filmes
+    - [ ] Scrapper e popular a tabela de planetas
+    - [ ] Scrapper e popular realacionemaneto Planeta/Filmes
 
 - Veiculos
-  -- [ ] Scrapper e popular a tabela de veiculos
-  -- [ ] Scrapper e popular realacionemaneto veiculo/Filmes
+    - [ ] Scrapper e popular a tabela de veiculos
+    - [ ] Scrapper e popular realacionemaneto veiculo/Filmes
 
 - Naves
-  -- [ ] Scrapper e popular a tabela de naves
-  -- [ ] Scrapper e popular realacionemaneto nave/Filmes
+    - [ ] Scrapper e popular a tabela de naves
+    - [ ] Scrapper e popular realacionemaneto nave/Filmes
