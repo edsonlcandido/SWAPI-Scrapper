@@ -1,6 +1,7 @@
 ﻿using Dapper.Contrib;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.Sqlite;
+using SWAPI_Scrapper.Models.SWApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace SWAPI_Scrapper.Repositories
         public async Task<T> Get(int id)
         {
             return await _connection.GetAsync<T>(id);
+        }
+
+        internal async Task<IEnumerable<T>> Get()
+        {
+            return await _connection.GetAllAsync<T>();
         }
     }
 }

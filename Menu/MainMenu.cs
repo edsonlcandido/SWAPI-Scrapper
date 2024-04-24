@@ -34,6 +34,7 @@ namespace SWAPI_Scrapper.Menu
                     break;
                 case "2":
                     // Código para a opção Personagens
+                    Personagens.MainMenu.Load();
                     break;
                 case "3":
                     // Código para a opção Planetas
@@ -47,10 +48,11 @@ namespace SWAPI_Scrapper.Menu
                 case "0":
                     Environment.Exit(0);
                     break;
-                default:                
+                default:
+                    Menu.MainMenu.Load();
                 break; // Sai do programa se qualquer outra tecla for pressionada
             }
-            Menu.MainMenu.Load();
+            
         }
     }
         

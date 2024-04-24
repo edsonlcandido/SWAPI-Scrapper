@@ -34,15 +34,28 @@ namespace SWAPI_Scrapper.Menu.Filmes
             switch (option)
             {
                 case "1":
-                    // Código para a opção Filmes
+                    Console.Clear();
+                    Console.WriteLine("Desafio May the fourth - Balta.io");
+                    Console.WriteLine("----");
+                    Console.WriteLine("Star Wars API Scrapper");
+                    Console.WriteLine("-----");
+                    Console.WriteLine("Listagem de filmes");
+                    Console.WriteLine("-----");
+                    var moviesDAO =  await moviesRepository.Get();
+
+                    foreach (var m in moviesDAO)
+                    {
+                        Console.WriteLine($"{m.episode_id} - {m.title}");
+                        Console.WriteLine($"Data de lançamento: {m.release_date}");
+                        Console.WriteLine("-----");
+                    }
                     break;
                 case "2":
                     Root movies = await ApiMovies();
 
                     foreach (var m in movies.results)
                     {
-                        Repository<MovieModelDAO> movieRepository = new Repository<MovieModelDAO>(Database.Connection);
-                        await movieRepository.Insert(new MovieModelDAO
+                        await moviesRepository.Insert(new MovieModelDAO
                         {
                             title = m.title,
                             episode_id = m.episode_id,
@@ -69,10 +82,9 @@ namespace SWAPI_Scrapper.Menu.Filmes
                     Menu.MainMenu.Load();
                     break;
                 default:
-                    Load();
-                    break; // Sai do programa se qualquer outra tecla for pressionada
+                    break;
             }
-            Load();
+            Filmes.MainMenu.Load();
         }
 
         static async Task<Root> ApiMovies()
