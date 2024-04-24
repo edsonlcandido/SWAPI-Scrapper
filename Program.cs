@@ -1,5 +1,9 @@
 ﻿using EvolveDb;
 using Microsoft.Data.Sqlite;
+using SWAPI_Scrapper.Menu;
+using SWAPI_Scrapper.Models.SWApi;
+using SWAPI_Scrapper.Repositories;
+using System;
 using System.Text.Json;
 
 namespace SWAPI_Scrapper
@@ -27,25 +31,23 @@ namespace SWAPI_Scrapper
                 throw;
             }
 
-
-            Root films = await ApiFilms();
-
-            Console.WriteLine("Hello, World!");
-
+            MainMenu.Load();
+            Console.ReadKey();
         }
 
-        static async Task<Root> ApiFilms()
+
+
+        static async Task<Character> ApiCharacter(string url)
         {
             using var client = new HttpClient();
-            var url = "https://swapi.py4e.com/api/films/?format=json";
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var jsonString = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<Root>(jsonString);
+            return JsonSerializer.Deserialize<Character>(jsonString);
         }
     }
 
-    public class Film
+    public class Movie
     {
         public string title { get; set; }
         public int episode_id { get; set; }
@@ -63,13 +65,7 @@ namespace SWAPI_Scrapper
         public string url { get; set; }
     }
 
-    public class Root
-    {
-        public int count { get; set; }
-        public object next { get; set; }
-        public object previous { get; set; }
-        public List<Film> results { get; set; }
-    }
+
     public class Character
     {
         public string name { get; set; }
@@ -81,7 +77,7 @@ namespace SWAPI_Scrapper
         public string birth_year { get; set; }
         public string gender { get; set; }
         public string homeworld { get; set; }
-        public List<Film> films { get; set; }
+        public List<string> films { get; set; }
         public List<string> species { get; set; }
         public List<string> vehicles { get; set; }
         public List<string> starships { get; set; }

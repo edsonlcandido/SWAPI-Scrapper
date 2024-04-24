@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Domain\" />
-    <Folder Include="Models\SWApi\" />
     <Folder Include="Repositories\Character\" />
   </ItemGroup>
 
