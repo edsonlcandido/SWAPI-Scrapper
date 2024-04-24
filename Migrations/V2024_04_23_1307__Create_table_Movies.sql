@@ -1,4 +1,4 @@
-﻿CREATE TABLE Film (
+﻿CREATE TABLE IF NOT EXISTS Movies (
     episode_id    INTEGER PRIMARY KEY
                           UNIQUE,
     title         TEXT,
