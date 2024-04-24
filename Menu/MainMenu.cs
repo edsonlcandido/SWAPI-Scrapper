@@ -19,7 +19,7 @@ namespace SWAPI_Scrapper.Menu
             Console.WriteLine("opções com * não implementado ainda");
             Console.WriteLine("1 - Filmes");
             Console.WriteLine("2 - Personagens");
-            Console.WriteLine("* - Planetas");
+            Console.WriteLine("3 - Planetas");
             Console.WriteLine("* - Veiculos");
             Console.WriteLine("* - Naves");
             Console.WriteLine("0 - Sair");
@@ -39,6 +39,7 @@ namespace SWAPI_Scrapper.Menu
                     break;
                 case "3":
                     // Código para a opção Planetas
+                    Planetas.MainMenu.Load();
                     break;
                 case "4":
                     // Código para a opção Veiculos

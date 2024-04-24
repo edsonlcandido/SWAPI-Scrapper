@@ -49,6 +49,7 @@ namespace SWAPI_Scrapper.Menu.Filmes
                         Console.WriteLine($"Data de lançamento: {m.release_date}");
                         Console.WriteLine("-----");
                     }
+                    Console.ReadKey();
                     break;
                 case "2":
                     Root movies = await ApiMovies();

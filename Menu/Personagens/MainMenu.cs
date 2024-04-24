@@ -19,7 +19,7 @@ namespace SWAPI_Scrapper.Menu.Personagens
             Console.WriteLine("----");
             Console.WriteLine("Star Wars API Scrapper");
             Console.WriteLine("-----");
-            Console.WriteLine("* - Listar personagens");
+            Console.WriteLine("1 - Listar personagens");
             Repository<CharacterModelDAO> charactersRepository = new Repository<CharacterModelDAO>(Database.Connection);
             var characterList = await charactersRepository.Get();
             //verificar se já existe personagens no banco
@@ -50,6 +50,7 @@ namespace SWAPI_Scrapper.Menu.Personagens
                         Console.WriteLine($"Ano de nascimento: {c.birth_year}");
                         Console.WriteLine("-----");
                     }
+                    Console.ReadKey();
                     break;
                 case "2":
                     Root root = await ApiCharacters("https://swapi.py4e.com/api/people/?format=json");
