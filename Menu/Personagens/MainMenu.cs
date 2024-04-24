@@ -19,7 +19,7 @@ namespace SWAPI_Scrapper.Menu.Personagens
             Console.WriteLine("----");
             Console.WriteLine("Star Wars API Scrapper");
             Console.WriteLine("-----");
-            Console.WriteLine("1 - Listar personagens");
+            Console.WriteLine("* - Listar personagens");
             Repository<CharacterModelDAO> charactersRepository = new Repository<CharacterModelDAO>(Database.Connection);
             var characterList = await charactersRepository.Get();
             //verificar se já existe personagens no banco
@@ -54,18 +54,43 @@ namespace SWAPI_Scrapper.Menu.Personagens
                 case "2":
                     Root root = await ApiCharacters("https://swapi.py4e.com/api/people/?format=json");
                     var characters = root.results;
+
                     while (root.next != null)
                     {
                         root = await ApiCharacters(root.next.ToString());
                         characters.AddRange(root.results);
                     }
+
                     foreach (var c in characters)
                     {
-                        string url = c.url;
-                        int id = Int32.Parse(url.TrimEnd('/').Split('/').Last());
+                        List<CharacterMovieModelDAO> characterMovies = new List<CharacterMovieModelDAO>();
+                        foreach (var film in c.films)
+                        {
+                            var movieId = GetIdForUrl(film);
+                            characterMovies.Add(new CharacterMovieModelDAO(GetIdForUrl(c.url), movieId));
+                        }
+                        //List<CharacterVehicleModelDAO> characterVehicles = new List<CharacterVehicleModelDAO>();
+                        //foreach (var vehicle in c.vehicles)
+                        //{
+                        //    var vehicleId = GetIdForUrl(vehicle);
+                        //    characterVehicles.Add(new CharacterVehicleModelDAO(GetIdForUrl(c.url), vehicleId));
+                        //}
+                        //List<CharacterStarshipModelDAO> characterStarships = new List<CharacterStarshipModelDAO>();
+                        //foreach (var starship in c.starships)
+                        //{
+                        //    var starshipId = GetIdForUrl(starship);
+                        //    characterStarships.Add(new CharacterStarshipModelDAO(GetIdForUrl(c.url), starshipId));
+                        //}
+
+                        Repositories.Repository<CharacterMovieModelDAO> characterMovieRepository = new Repositories.Repository<CharacterMovieModelDAO>(Database.Connection);
+                        foreach (var item in characterMovies)
+                        {
+                            characterMovieRepository.Insert(item);
+                        }
+
                         await charactersRepository.Insert(new CharacterModelDAO
-                        {                           
-                            id = id,
+                        {
+                            id = GetIdForUrl(c.url),
                             name = c.name,
                             birth_year = c.birth_year,
                             created = c.created,
@@ -74,8 +99,10 @@ namespace SWAPI_Scrapper.Menu.Personagens
                             gender = c.gender,
                             hair_color = c.hair_color,
                             height = c.height,
-                            homeworld = c.homeworld,
-                            mass = c.mass
+                            homeworld_id = GetIdForUrl(c.homeworld),
+                            mass = c.mass,
+                            url = c.url,
+                            skin_color = c.skin_color
                             // Add other properties as needed
                         });
                     }
@@ -88,6 +115,13 @@ namespace SWAPI_Scrapper.Menu.Personagens
             }
             Personagens.MainMenu.Load();
         }
+
+        static int GetIdForUrl(string url)
+        {
+            int id = Int32.Parse(url.TrimEnd('/').Split('/').Last());
+            return id;
+        }
+
         static async Task<Root> ApiCharacters(string url)
         {
             using var client = new HttpClient();
@@ -97,7 +131,6 @@ namespace SWAPI_Scrapper.Menu.Personagens
             return JsonSerializer.Deserialize<Root>(jsonString);
         }
     }
-
     public class Character
     {
         public string name { get; set; }

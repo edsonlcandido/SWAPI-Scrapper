@@ -20,7 +20,7 @@ namespace SWAPI_Scrapper.Models.SWApi
         public string eye_color { get; set; }
         public string birth_year { get; set; }
         public string gender { get; set; }
-        public string homeworld { get; set; }
+        public int homeworld_id { get; set; }
         public string created { get; set; }
         public string edited { get; set; }
         public string url { get; set; }
