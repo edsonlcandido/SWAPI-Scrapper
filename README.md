@@ -10,7 +10,6 @@ Aplicação de console criada para gerar um banco de dados SQLite com a API de S
 ## Próximos passos
 - Filmes  
      - [x] Scrapper e popular a tabela de filmes  
-     - [ ] Scrapper e popular realacionemaneto Filme/Naves 
 
 - Personagens
     - [x] Scrapper e popular a tabela de personagens  
