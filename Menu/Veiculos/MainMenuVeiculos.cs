@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SWAPI_Scrapper.Menu.Veiculos
 {
-    internal class MainMenu
+    internal class MainMenuVeiculos
     {
         public static async Task Load()
         {
@@ -49,7 +49,8 @@ namespace SWAPI_Scrapper.Menu.Veiculos
                         Console.WriteLine($"Modelo: {v.Model}");
                         Console.WriteLine("-----");
                     }
-                    Console.ReadLine();
+                    Console.ReadKey();
+                    Veiculos.MainMenuVeiculos.Load();
                     break;
                 case "2":
                     Root root = await ApiVehicles("https://swapi.py4e.com/api/vehicles/?format=json");
@@ -100,7 +101,8 @@ namespace SWAPI_Scrapper.Menu.Veiculos
                             Url = v.url
                         });
                     }
-                    Veiculos.MainMenu.Load();
+                    Console.ReadKey();
+                    Veiculos.MainMenuVeiculos.Load();
                     break;
                 case "0":
                     Menu.MainMenu.Load();
@@ -108,7 +110,7 @@ namespace SWAPI_Scrapper.Menu.Veiculos
                 default:
                     break;
             }
-            Veiculos.MainMenu.Load();
+            Veiculos.MainMenuVeiculos.Load();
         }
 
         static int GetIdForUrl(string url)

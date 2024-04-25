@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SWAPI_Scrapper.Menu.Personagens
 {
-    internal class MainMenu
+    internal class MainMenuPersonagens
     {
         public static async Task Load()
         {
@@ -114,7 +114,7 @@ namespace SWAPI_Scrapper.Menu.Personagens
                 default:
                     break;
             }
-            Personagens.MainMenu.Load();
+            Personagens.MainMenuPersonagens.Load();
         }
 
         static int GetIdForUrl(string url)

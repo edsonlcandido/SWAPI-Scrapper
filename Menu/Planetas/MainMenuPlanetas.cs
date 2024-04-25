@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SWAPI_Scrapper.Menu.Planetas
 {
-    internal class MainMenu
+    internal class MainMenuPlanetas
     {
         public static async Task Load()
         {
@@ -50,7 +50,8 @@ namespace SWAPI_Scrapper.Menu.Planetas
                         Console.WriteLine($"Rotation Period: {p.RotationPeriod}");
                         Console.WriteLine("-----");
                     }
-                    Console.ReadLine();
+                    Console.ReadKey();
+                    MainMenuPlanetas.Load();
                     break;
                 case "2":
                     Root root = await ApiPlanets("https://swapi.py4e.com/api/planets/?format=json");
@@ -65,16 +66,30 @@ namespace SWAPI_Scrapper.Menu.Planetas
                     foreach (var p in planets)
                     {
                         List<PlanetMoviesModelDAO> planetMovies = new List<PlanetMoviesModelDAO>();
+                        List<PlanetCharactersModelDAO> planetCharacters = new List<PlanetCharactersModelDAO>();
+
                         foreach (var film in p.films)
                         {
                             var movieId = GetIdForUrl(film);
                             planetMovies.Add(new PlanetMoviesModelDAO(GetIdForUrl(p.url), movieId));
                         }
+                        foreach (var c in p.residents)
+                        {
+                            var characterId = GetIdForUrl(c);
+                            planetCharacters.Add(new PlanetCharactersModelDAO(GetIdForUrl(p.url), characterId));
+                        }
+
 
                         Repositories.Repository<PlanetMoviesModelDAO> planetMovieRepository = new Repositories.Repository<PlanetMoviesModelDAO>(Database.Connection);
                         foreach (var item in planetMovies)
                         {
                             planetMovieRepository.Insert(item);
+                        }
+
+                        Repositories.Repository<PlanetCharactersModelDAO> planetCharacterRepository = new Repositories.Repository<PlanetCharactersModelDAO>(Database.Connection);
+                        foreach (var item in planetCharacters)
+                        {
+                            planetCharacterRepository.Insert(item);
                         }
 
                         await planetsRepository.Insert(new PlanetModelDAO
@@ -95,6 +110,8 @@ namespace SWAPI_Scrapper.Menu.Planetas
                             // Add other properties as needed
                         });
                     }
+                    Console.ReadKey();
+                    MainMenuPlanetas.Load();
                     break;
                 case "0":
                     Menu.MainMenu.Load();
@@ -102,7 +119,7 @@ namespace SWAPI_Scrapper.Menu.Planetas
                 default:
                     break;
             }
-            Planetas.MainMenu.Load();
+            Planetas.MainMenuPlanetas.Load();
         }
 
         static int GetIdForUrl(string url)
@@ -135,6 +152,7 @@ namespace SWAPI_Scrapper.Menu.Planetas
         public string edited { get; set; }
         public string url { get; set; }
         public List<string> films { get; set; }
+        public List<string> residents { get; set; }
     }
 
     public class Root

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SWAPI_Scrapper.Menu.Filmes
 {
-    internal class MainMenu
+    internal class MainMenuFilmes
     {
         public static async Task Load()
         {
@@ -49,7 +49,8 @@ namespace SWAPI_Scrapper.Menu.Filmes
                         Console.WriteLine($"Data de lançamento: {m.release_date}");
                         Console.WriteLine("-----");
                     }
-                    Console.ReadLine();
+                    Console.ReadKey();
+                    Filmes.MainMenuFilmes.Load();
                     break;
                 case "2":
                     Root movies = await ApiMovies();
@@ -69,6 +70,8 @@ namespace SWAPI_Scrapper.Menu.Filmes
                             url = m.url
                         });
                     }
+                    Console.ReadKey();
+                    Filmes.MainMenuFilmes.Load();
                     break;
                 case "3":
                     // Código para a opção Planetas
@@ -85,7 +88,7 @@ namespace SWAPI_Scrapper.Menu.Filmes
                 default:
                     break;
             }
-            Filmes.MainMenu.Load();
+            //Filmes.MainMenu.Load();
         }
 
         static async Task<Root> ApiMovies()
