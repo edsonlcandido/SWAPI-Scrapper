@@ -20,8 +20,8 @@ Aplicação de console criada para gerar um banco de dados SQLite com a API de S
     - [x] Scrapper e popular realacionemaneto Planeta/Filmes
 
 - Veiculos
-    - [ ] Scrapper e popular a tabela de veiculos
-    - [ ] Scrapper e popular realacionemaneto veiculo/Filmes
+    - [x] Scrapper e popular a tabela de veiculos
+    - [x] Scrapper e popular realacionemaneto veiculo/Filmes
 
 - Naves
     - [ ] Scrapper e popular a tabela de naves

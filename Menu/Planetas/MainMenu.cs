@@ -50,7 +50,7 @@ namespace SWAPI_Scrapper.Menu.Planetas
                         Console.WriteLine($"Rotation Period: {p.RotationPeriod}");
                         Console.WriteLine("-----");
                     }
-                    Console.ReadKey();
+                    Console.ReadLine();
                     break;
                 case "2":
                     Root root = await ApiPlanets("https://swapi.py4e.com/api/planets/?format=json");
