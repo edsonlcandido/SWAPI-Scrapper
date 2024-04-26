@@ -7,7 +7,7 @@ using Dapper.Contrib.Extensions;
 
 namespace SWAPI_Scrapper.Models.SWApi
 {
-    [Dapper.Contrib.Extensions.Table("PlanetCharacters")]
+    [Dapper.Contrib.Extensions.Table("Planet_Characters")]
     public class PlanetCharactersModelDAO
     {        
         public int PlanetId { get; set; }

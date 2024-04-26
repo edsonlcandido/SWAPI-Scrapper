@@ -7,15 +7,15 @@ using Dapper.Contrib.Extensions;
 
 namespace SWAPI_Scrapper.Models.SWApi
 {
-    [Dapper.Contrib.Extensions.Table("CharacterMovie")]
+    [Dapper.Contrib.Extensions.Table("Film_Characters")]
     public class CharacterMovieModelDAO
     {        
         public int CharacterId { get; set; }
-        public int MovieId { get; set; }
-        public CharacterMovieModelDAO(int CharacterId, int MovieId)
+        public int FilmId { get; set; }
+        public CharacterMovieModelDAO(int CharacterId, int FilmId)
         {
             this.CharacterId = CharacterId;
-            this.MovieId = MovieId;
+            this.FilmId = FilmId;
         }
     }
 }

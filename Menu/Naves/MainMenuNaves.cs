@@ -32,7 +32,7 @@ namespace SWAPI_Scrapper.Menu.Naves
                     Console.WriteLine("-----");
                     Console.WriteLine("Listagem de naves");
                     Console.WriteLine("-----");
-                    Console.WriteLine("Naves não implementado ainda");
+                    
                     Console.ReadKey();
                     MainMenuNaves.Load();
                     break;

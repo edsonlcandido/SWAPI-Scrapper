@@ -103,13 +103,10 @@ namespace SWAPI_Scrapper.Menu.Planetas
                             Gravity = p.gravity,
                             Terrain = p.terrain,
                             SurfaceWater = p.surface_water,
-                            Population = p.population,
-                            Created = p.created,
-                            Edited = p.edited,
-                            Url = p.url
-                            // Add other properties as needed
+                            Population = p.population
                         });
                     }
+                    Console.WriteLine("Planetas populados com sucesso!");
                     Console.ReadKey();
                     MainMenuPlanetas.Load();
                     break;
@@ -117,6 +114,7 @@ namespace SWAPI_Scrapper.Menu.Planetas
                     Menu.MainMenu.Load();
                     break;
                 default:
+                    MainMenuPlanetas.Load();
                     break;
             }
             Planetas.MainMenuPlanetas.Load();

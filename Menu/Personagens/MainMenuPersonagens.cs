@@ -46,8 +46,8 @@ namespace SWAPI_Scrapper.Menu.Personagens
 
                     foreach (var c in charactersDAO)
                     {
-                        Console.WriteLine($"{c.name}");
-                        Console.WriteLine($"Ano de nascimento: {c.birth_year}");
+                        Console.WriteLine($"{c.Name}");
+                        Console.WriteLine($"Ano de nascimento: {c.BirthYear}");
                         Console.WriteLine("-----");
                     }
                     Console.ReadLine();
@@ -70,18 +70,6 @@ namespace SWAPI_Scrapper.Menu.Personagens
                             var movieId = GetIdForUrl(film);
                             characterMovies.Add(new CharacterMovieModelDAO(GetIdForUrl(c.url), movieId));
                         }
-                        //List<CharacterVehicleModelDAO> characterVehicles = new List<CharacterVehicleModelDAO>();
-                        //foreach (var vehicle in c.vehicles)
-                        //{
-                        //    var vehicleId = GetIdForUrl(vehicle);
-                        //    characterVehicles.Add(new CharacterVehicleModelDAO(GetIdForUrl(c.url), vehicleId));
-                        //}
-                        //List<CharacterStarshipModelDAO> characterStarships = new List<CharacterStarshipModelDAO>();
-                        //foreach (var starship in c.starships)
-                        //{
-                        //    var starshipId = GetIdForUrl(starship);
-                        //    characterStarships.Add(new CharacterStarshipModelDAO(GetIdForUrl(c.url), starshipId));
-                        //}
 
                         Repositories.Repository<CharacterMovieModelDAO> characterMovieRepository = new Repositories.Repository<CharacterMovieModelDAO>(Database.Connection);
                         foreach (var item in characterMovies)
@@ -91,27 +79,28 @@ namespace SWAPI_Scrapper.Menu.Personagens
 
                         await charactersRepository.Insert(new CharacterModelDAO
                         {
-                            id = GetIdForUrl(c.url),
-                            name = c.name,
-                            birth_year = c.birth_year,
-                            created = c.created,
-                            edited = c.edited,
-                            eye_color = c.eye_color,
-                            gender = c.gender,
-                            hair_color = c.hair_color,
-                            height = c.height,
-                            homeworld_id = GetIdForUrl(c.homeworld),
-                            mass = c.mass,
-                            url = c.url,
-                            skin_color = c.skin_color
+                            Id = GetIdForUrl(c.url),
+                            Name = c.name,
+                            Height = c.height,
+                            Weight = c.mass,
+                            HairColor = c.hair_color,
+                            SkinColor = c.skin_color,
+                            EyeColor = c.eye_color,
+                            BirthYear = c.birth_year,
+                            Gender = c.gender,
+                            PlanetId = GetIdForUrl(c.homeworld),
                             // Add other properties as needed
                         });
                     }
+                    Console.WriteLine("Personagens populados");
+                    Console.ReadKey();
+                    MainMenuPersonagens.Load();
                     break;
                 case "0":
                     Menu.MainMenu.Load();
                     break;
                 default:
+                    Personagens.MainMenuPersonagens.Load();
                     break;
             }
             Personagens.MainMenuPersonagens.Load();

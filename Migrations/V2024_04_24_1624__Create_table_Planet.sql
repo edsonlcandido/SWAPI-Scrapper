@@ -1,4 +1,4 @@
-﻿CREATE TABLE Planets
+﻿CREATE TABLE Planet
 (
     Id INTEGER PRIMARY KEY,
     Name TEXT,
@@ -9,8 +9,5 @@
     Gravity TEXT,
     Terrain TEXT,
     SurfaceWater TEXT,
-    Population TEXT,
-    Created TEXT,
-    Edited TEXT,
-    Url TEXT
+    Population TEXT
 )

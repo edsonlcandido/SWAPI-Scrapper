@@ -7,7 +7,7 @@ using Dapper.Contrib.Extensions;
 
 namespace SWAPI_Scrapper.Models.SWApi
 {
-    [Dapper.Contrib.Extensions.Table("Planets")]
+    [Dapper.Contrib.Extensions.Table("Planet")]
     public class PlanetModelDAO
     {
         [Key]
@@ -21,8 +21,5 @@ namespace SWAPI_Scrapper.Models.SWApi
         public string Terrain { get; set; }
         public string SurfaceWater { get; set; }
         public string Population { get; set; }
-        public string Created { get; set; }
-        public string Edited { get; set; }
-        public string Url { get; set; }
     }
 }

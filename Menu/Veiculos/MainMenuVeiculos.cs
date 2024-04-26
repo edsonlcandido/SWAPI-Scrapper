@@ -90,17 +90,15 @@ namespace SWAPI_Scrapper.Menu.Veiculos
                             Manufacturer = v.manufacturer,
                             CostInCredits = v.cost_in_credits,
                             Length = v.length,
-                            MaxAtmospheringSpeed = v.max_atmosphering_speed,
+                            MaxSpeed = v.max_atmosphering_speed,
                             Crew = v.crew,
                             Passengers = v.passengers,
                             CargoCapacity = v.cargo_capacity,
                             Consumables = v.consumables,
-                            VehicleClass = v.vehicle_class,
-                            Created = v.created,
-                            Edited = v.edited,
-                            Url = v.url
+                            Class = v.vehicle_class
                         });
                     }
+                    Console.WriteLine("Veículos populados com sucesso!");
                     Console.ReadKey();
                     Veiculos.MainMenuVeiculos.Load();
                     break;
@@ -108,6 +106,7 @@ namespace SWAPI_Scrapper.Menu.Veiculos
                     Menu.MainMenu.Load();
                     break;
                 default:
+                    Veiculos.MainMenuVeiculos.Load();
                     break;
             }
             Veiculos.MainMenuVeiculos.Load();

@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 
 namespace SWAPI_Scrapper.Models.SWApi
 {
-    [Dapper.Contrib.Extensions.Table("Movies")]
+    [Dapper.Contrib.Extensions.Table("Film")]
     internal class MovieModelDAO
-    {
-        public string title { get; set; }
-        //set this primary key
-        [Key]
-        public int episode_id { get; set; }
-        public string opening_crawl { get; set; }
-        public string director { get; set; }
-        public string producer { get; set; }
-        public string release_date { get; set; }
-        public DateTime created { get; set; }
-        public DateTime edited { get; set; }
-        public string url { get; set; }
+    {   
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public int Episode { get; set; }
+        public string OpeningCrawl { get; set; }
+        public string Director { get; set; }
+        public string Producer { get; set; }
+        public string ReleaseDate { get; set; }
+
     }
 }

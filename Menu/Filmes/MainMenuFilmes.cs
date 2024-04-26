@@ -20,9 +20,9 @@ namespace SWAPI_Scrapper.Menu.Filmes
             Console.WriteLine("-----");
             Console.WriteLine("1 - Listar filmes");
             Repository<MovieModelDAO> moviesRepository = new Repository<MovieModelDAO>(Database.Connection);
-            MovieModelDAO movie = await moviesRepository.Get(1);
+            var moviesList = await moviesRepository.Get();
             //verificar se já existe filmes no banco
-            if (movie == null)
+            if (moviesList.Count() == 0)
             {
                 Console.WriteLine("2 - Popular filmes");
             }
@@ -45,8 +45,8 @@ namespace SWAPI_Scrapper.Menu.Filmes
 
                     foreach (var m in moviesDAO)
                     {
-                        Console.WriteLine($"{m.episode_id} - {m.title}");
-                        Console.WriteLine($"Data de lançamento: {m.release_date}");
+                        Console.WriteLine($"{m.Episode} - {m.Title}");
+                        Console.WriteLine($"Data de lançamento: {m.ReleaseDate}");
                         Console.WriteLine("-----");
                     }
                     Console.ReadKey();
@@ -57,21 +57,21 @@ namespace SWAPI_Scrapper.Menu.Filmes
 
                     foreach (var m in movies.results)
                     {
-                        await moviesRepository.Insert(new MovieModelDAO
+                        MovieModelDAO movieModelDAO = new MovieModelDAO
                         {
-                            title = m.title,
-                            episode_id = m.episode_id,
-                            opening_crawl = m.opening_crawl,
-                            director = m.director,
-                            producer = m.producer,
-                            release_date = m.release_date,
-                            created = m.created,
-                            edited = m.edited,
-                            url = m.url
-                        });
+                            Id = GetIdForUrl(m.url),
+                            Title = m.title,
+                            Episode = m.episode_id,
+                            OpeningCrawl = m.opening_crawl,
+                            Director = m.director,
+                            Producer = m.producer,
+                            ReleaseDate = m.release_date
+                        };
+                        await moviesRepository.Insert(movieModelDAO);
                     }
+                    Console.WriteLine("Filmes adicionados");
                     Console.ReadKey();
-                    Filmes.MainMenuFilmes.Load();
+                    MainMenuFilmes.Load();
                     break;
                 case "3":
                     // Código para a opção Planetas
@@ -86,9 +86,16 @@ namespace SWAPI_Scrapper.Menu.Filmes
                     Menu.MainMenu.Load();
                     break;
                 default:
+                    MainMenuFilmes.Load();
                     break;
             }
-            //Filmes.MainMenu.Load();
+            Filmes.MainMenuFilmes.Load();
+        }
+
+        static int GetIdForUrl(string url)
+        {
+            int id = Int32.Parse(url.TrimEnd('/').Split('/').Last());
+            return id;
         }
 
         static async Task<Root> ApiMovies()
