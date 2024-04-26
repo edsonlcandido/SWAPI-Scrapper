@@ -24,5 +24,7 @@ Aplicação de console criada para gerar um banco de dados SQLite com a API de S
     - [x] Scrapper e popular realacionemaneto veiculo/Filmes
 
 - Naves
-    - [ ] Scrapper e popular a tabela de naves
-    - [ ] Scrapper e popular realacionemaneto nave/Filmes
+    - [x] Scrapper e popular a tabela de naves
+    - [x] Scrapper e popular realacionemaneto nave/Filmes
+
+[x] Ajustado o scrapper para o projeto do may the force.
