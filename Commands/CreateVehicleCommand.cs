@@ -1,16 +1,15 @@
-﻿using System;
+﻿using SWAPI_Scrapper.Models.SWApi;
+using SWAPI_Scrapper.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper.Contrib.Extensions;
 
-namespace SWAPI_Scrapper.Models.SWApi
+namespace SWAPI_Scrapper.Commands
 {
-    [Dapper.Contrib.Extensions.Table("Vehicle")]
-    public class VehicleModelDAO
+    public class CreateVehicleCommand : ICommand
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Model { get; set; }
@@ -23,5 +22,6 @@ namespace SWAPI_Scrapper.Models.SWApi
         public string CargoCapacity { get; set; }
         public string Consumables { get; set; }
         public string Class { get; set; }
+        public List<string> Films { get; set; }
     }
 }
