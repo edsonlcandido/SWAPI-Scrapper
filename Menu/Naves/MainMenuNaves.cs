@@ -49,7 +49,7 @@ namespace SWAPI_Scrapper.Menu.Naves
                     Console.WriteLine("-----");
                     Console.WriteLine("Popular naves");
                     Console.WriteLine("-----");
-                    Root root = await ApiSpaceships("https://swapi.py4e.com/api/vehicles/?format=json");
+                    Root root = await ApiSpaceships("https://swapi.py4e.com/api/starships/?format=json");
                     var spaceships = root.results;
                     while (root.next != null)
                     {
@@ -101,6 +101,7 @@ namespace SWAPI_Scrapper.Menu.Naves
                     MainMenuNaves.Load();
                     break;
             }
+            MainMenuNaves.Load();
         }
         static int GetIdForUrl(string url)
         {

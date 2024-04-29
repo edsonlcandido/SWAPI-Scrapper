@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SWAPI_Scrapper.Models.SWApi
 {
     [Dapper.Contrib.Extensions.Table("Film")]
-    internal class MovieModelDAO
+    public class MovieModelDAO
     {   
         public int Id { get; set; }
         public string Title { get; set; }

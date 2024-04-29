@@ -8,7 +8,7 @@ using Dapper.Contrib.Extensions;
 namespace SWAPI_Scrapper.Models.SWApi
 {
     [Dapper.Contrib.Extensions.Table("Vehicle")]
-    internal class VehicleModelDAO
+    public class VehicleModelDAO
     {
         [Key]
         public int Id { get; set; }
